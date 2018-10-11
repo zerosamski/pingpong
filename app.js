@@ -67,7 +67,7 @@ app.post("/newtournament", (req, res) => {
         Players.create({
             name: player,
             haslost: false,
-            lastround: 1,
+            lastround: 0,
             winner: false,
             runnerup: false
         })
@@ -79,14 +79,40 @@ app.post("/newtournament", (req, res) => {
         }
     })
     .then((players) => {
-        res.render("rounds", {players: players})
+        res.redirect("/rounds")
     })
 }) 
 
 //displays rounds of the tournament
 app.get("/rounds", (req, res) => {
+    Players.findAll({
+        where: {
+            haslost: false
+        }
+    })
+    .then((players) => {
+        players.forEach(function(player) {
+            Players.update({
+                lastround: player.lastround + 1
+                }, { 
+                    where: {
+                        name: player.name
+                    }
+                })
+            })
+        })
+    .then(() => {
+        Players.findAll({
+            where: {
+                haslost: false
+            }
+        })
+    })
+    .then((result) => {
+        res.render("rounds", {players: result})
+        })
+    })
 
-}) 
 
 //random shit trick
 app.post("/rounds", (req, res) => {
