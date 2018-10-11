@@ -1,0 +1,19 @@
+{
+  "name": "pingpong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerosamski/pingpong.git"
+  },
+  "author": "Samuel Mulkens, Joris Veldt, Toni Golloshi, Kevin Huang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zerosamski/pingpong/issues"
+  },
+  "homepage": "https://github.com/zerosamski/pingpong#readme"
+}
