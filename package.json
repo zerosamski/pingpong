@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/zerosamski/pingpong/issues"
   },
-  "homepage": "https://github.com/zerosamski/pingpong#readme"
+  "homepage": "https://github.com/zerosamski/pingpong#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "sequelize": "^4.39.0"
+  }
 }
