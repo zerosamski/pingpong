@@ -42,7 +42,27 @@ app.get("newtournament", (req, res) => {
 
 //enter names of players
 app.post("newtournament", (req, res) => {
+    let playerinput = req.body.playernames
+    let players = playerinput.spit("\n")
 
+    players.forEach(function(player) {
+        Players.create({
+            name: player,
+            haslost: false,
+            lastround: 1,
+            winner: false,
+            runnerup: false
+        })
+    })
+
+    Players.findAll({
+        where {
+            haslost: false
+        }
+    })
+    .then((players) => {
+        res.render("rounds", {players: players})
+    })
 }) 
 
 //displays rounds of the tournament
