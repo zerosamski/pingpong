@@ -18,6 +18,8 @@
   "homepage": "https://github.com/zerosamski/pingpong#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect-session-sequelize": "^5.2.2",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "sequelize": "^4.39.0"
