@@ -107,11 +107,12 @@ app.get("/rounds", (req, res) => {
                 haslost: false
             }
         })
-    })
     .then((result) => {
+        console.log(result)
         res.render("rounds", {players: result})
         })
     })
+})
 
 
 //random shit trick
