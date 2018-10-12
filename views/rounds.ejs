@@ -1,5 +1,6 @@
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
 table, th, td {
     border: 1px solid black;
@@ -13,8 +14,61 @@ th, td {
 </head>
 <body>
 
-<h2>Cell that spans two columns</h2>
-<p>To make a cell span more than one column, use the colspan attribute.</p>
+<% let playersarray = players %>
+
+<% if(playersarray.length%2 === 0){ %>
+<%let match = 1 %>
+  <% for(var i = 0; i < playersarray.length; i=i+2) { %>
+  <p> match <%= match %> </p>
+  <form>
+  <div class="form-group">
+  <label for="exampleFormControlSelect1"><%= playersarray[i].name %></label>
+    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+      <option>Winner</option>
+      <option>Loser</option>
+    </select>
+    <label for="exampleFormControlSelect1"><%= playersarray[i+1].name %></label>
+    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+      <option>Winner</option>
+      <option>Loser</option>
+    </select>
+    </div>
+  </form>
+  <%match ++%>
+  <% } %>
+
+<%} else if (players.length %2 !== 0) { %>
+	<% let randomplayer = playersarray[Math.floor(Math.random() * playersarray.length)] %>
+	<% var index = playersarray.indexOf(randomplayer); %>
+		<% if (index > -1) { %>
+  			<% playersarray.splice(index, 1); %>
+		<% } %>
+
+  <%let match = 1 %>
+
+	<% for(var i = 0; i < playersarray.length; i=i+2) { %>
+	<p> match <%= match %> </p>
+  <form>
+  <div class="form-group">
+  <label for="exampleFormControlSelect1"><%= playersarray[i].name %></label>
+    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+      <option>Winner</option>
+      <option>Loser</option>
+    </select>
+    <label for="exampleFormControlSelect1"><%= playersarray[i+1].name %></label>
+    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+      <option>Winner</option>
+      <option>Loser</option>
+    </select>
+    </div>
+  </form>
+  <%match ++%>
+	<% } %>
+	
+	<p><%=randomplayer.name%> is lucky and goes to the next round! </p>
+<% } %>
+
+
 
 <table style="width:100%">
   <tr>
@@ -35,9 +89,6 @@ th, td {
   <% }) %>
 </table>
 
-// Het moet een form worden waarbij een winner en loser kan invullen.
-// bij form input moet name <%player.name%> zijn zodat je aan de backend dynamisch kan kijken wat de waarde is (win/lose) dmv een forEach loop
-// backend kan dan namelijk naar req.body.(player.name) kijken om te kijken of die speler de match gewonnen of verloren heeft
 
 </body>
 </html>

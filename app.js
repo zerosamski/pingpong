@@ -102,17 +102,22 @@ app.get("/rounds", (req, res) => {
             })
         })
     .then(() => {
-        Players.findAll({
+        return Players.findAll({
             where: {
                 haslost: false
-            }
+            },
+            order: sequelize.random()
         })
     .then((result) => {
         console.log(result)
         res.render("rounds", {players: result})
         })
+        .catch(error => {
+            console.log(error)
+        })
     })
-})
+}) 
+
 
 
 //random shit trick
