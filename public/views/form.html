@@ -4,8 +4,6 @@
 		<title> Tournament </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </head>
 	<body>
     <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #262933;">
@@ -44,27 +42,28 @@
       <h1>Your Tournament Generator</h1>
       <h2>Game on!</h2>
     </header>
-
-    <form id="form" class="topBefore" class="form-item">
+    <form id="form" >
       <input id="name" type="text" placeholder="Tournament Name" required>
-      <select class="form-item__element" id="competition" required>
+      <select id="competition" required>
         <option disabled selected value="">Select Competition type</option>
         <option value="roundrobin" id="roundrobin">Round Robin</option>
         <option value="singles" id="singles">Single Elimination</option>
       </select>
-      <select id="select" class="form-item__element form-item__element--select" required>
+      <select id="select" required>
         <option disabled selected value="">Select Number of Players*</option>
         <option value="4">4</option>
         <option value="8">8</option>
         <option value="16">16</option>
       </select>
-      <textarea id="message" type="text" placeholder="Player names*" required></textarea>
-      <button class="button"><span>Submit</span></button>
-      <br>
-      <br>
-      <p>*e.g. You're playing with 5 players, select '8' number of players</p>
-      <p>*Press enter after every name</p>
+      <textarea id="message" type="text" placeholder="Player names*" class="common" cols="36"required></textarea>
+        <button class="bttnform"><span>Submit</span></button>
+      <div class="textcondition">
+        <p>*e.g. You're playing with 5 players, select '8' number of players</p>
+        <p>*Press enter after every name</p>
+      <div>
     </form>
-    <script type="text/javascript" src="../javascript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../animation.js"></script>
   </body>
 </html>

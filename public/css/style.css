@@ -37,7 +37,7 @@ a:hover{
     height: 5px;
     background: #D12941;
     position: absolute;
-    top: -.75em;
+    top: -.65em;
     left: 0;
     right: 0;
     transform: scale(0, 1);
@@ -92,8 +92,8 @@ header {
 input {
   font-family: 'Lato', sans-serif;
   font-size: 0.875em;
-  width: 470px;
-  height: 50px;
+  width: 33.6em;
+  height: 3.6em;
   padding: 0px 15px 0px 15px;
   
   background: transparent;
@@ -189,8 +189,8 @@ select {
   display: block;
   font-family: 'Lato', sans-serif;
   font-size: 0.7em;
-  width: 470px;
-  height: 50px;
+  width: 42em;
+  height: 4.2em;
   padding: 0px 15px 0px 15px;
   
   background: transparent;
@@ -204,42 +204,41 @@ select {
   -webkit-border-radius: 0px;
 }
 
-.form-item {
-  &:not(:first-child) {
-    margin-top: 1em;
-  }
-  
-  > :not(:first-child) {
-    margin-top: 0.25em;
-  }
-}
-
 textarea {
-  width: 470px;
-  max-width: 470px;
-  height: 110px;
-  max-height: 110px;
-  padding: 15px;
-  
   background: transparent;
-  outline: none;
-  
   color: #726659;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.875em;
-  
+  padding-top: 15px;
+  padding-left: 15px;
   border: solid 1px #b3aca7;
   
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
 }
 
+.txtstuff {
+  outline: none;
+  resize: none; 
+  overflow: hidden;
+}
 
-button {
+.common {
+  width: 470px;
+  min-height: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  overflow: hidden;
+}
+
+.hiddendiv {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.bttnform {
   background: #333;
-  margin-top: 1em;
+  margin-top: 2em;
   margin-left: 40%;
   color: white;
   padding: 0px 15px 0px 15px;
@@ -247,6 +246,37 @@ button {
   font-size: 18px;
   border-radius: 4px;
   font-family: 'Lato', sans-serif;
-  transition: .6s;
+  text-align: center;
   overflow: hidden;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.bttnform span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.bttnform span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.bttnform:hover span {
+  padding-right: 25px;
+}
+
+.bttnform:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.textcondition p:first-of-type {
+  padding-top: 2em;
 }
