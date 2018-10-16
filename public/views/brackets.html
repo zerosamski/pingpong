@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Elimination Tournaments</title>
+    <link href="jquery.bracket.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #262933;">
+    <div class="container">
+      <a class="navbar-brand" style="color: #cee0d6" href="#">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Ping Pong
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+        <ul class="navbar-nav nav-item">
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">Tournament</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">Contact us</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+    <h2 align="center" class="mt-3"style="color: #cee0d6"><%=Tournament Name%></h2>
+
+    <div class="mbp">
+    <div class="demo"></div>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.bracket.min.js"></script>
+    <script>
+        var minimalData = {
+          teams : [
+            ["Russia", "Brazil"],
+            ["Iran", "Japan"],
+            ["Mexico", "Belgium"],
+            ["South Korea", "Saudi Arabia"],
+            ["Germany", "England"],
+            ["Spain", "Nigeria"],
+            ["Costa Rica", "Poland"],
+            [null, "Iceland"]
+          ],
+          results : [
+            [[1,3], [0,4], [2,4], [4,3], [2,1], [7,2], [3,5], [0,1]],
+            [[4,6], [2,1], [3,2], [5,3]],
+            [[1,6], [3,1]],
+            [[1,4], [2,3]]
+          ]
+        }
+
+        $(function() {
+          $('.demo').bracket({
+            init: minimalData /* data to initialize the bracket with */ })
+        })
+    </script>
+  </div>
+  <h4 align="center" style="color: #cee0d6">The winner is <%= winner=></h4>
+  <div class="container mt-3 ">
+    <div class="row mb-6 mt-4" align="center">
+      <div class="col-md-6 col-sm-6 col-xs-1">
+        <a href="#" role="button" class="btn btn-outline-info mb-3">Go to homepage</a>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-1">
+        <a href="#" role="button" class="btn btn-outline-info mb-3">New Tournament</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
