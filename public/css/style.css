@@ -1,0 +1,282 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+
+body{
+  font-family: 'Exo', sans-serif;
+  font-weight: lighter;
+}
+
+a:hover{
+  color:white;
+  text-decoration: none;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 800px) {
+  
+  nav li {
+    margin-left: 1.5em;
+    margin-bottom: 0;
+  }
+  
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: #D12941;
+    position: absolute;
+    top: -.65em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+}
+
+.jumbotron {
+  background-image: url("../img/pingpong.jpeg");
+  /* background: no-repeat; */
+  background-position: fixed;
+  background-size: cover;
+  height:80%;
+  margin-bottom: 8%;
+}
+
+.textcolor{
+  color: #CEE0D6;
+}
+
+.jumbobutton {
+    position: absolute;
+    top: 86%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2%;
+    color: #CEE0D6;
+    font-size: 16pt;
+    font-weight: lighter;
+    background: #69adba;
+}
+
+header {
+  position: relative;
+  margin: 100px 0 25px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.3em;
+  text-align: center;
+  letter-spacing: 7px;
+}
+
+#form {
+  position: relative;
+  width: 500px;
+  margin: 50px auto 100px auto;
+}
+
+input {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  width: 33.6em;
+  height: 3.6em;
+  padding: 0px 15px 0px 15px;
+  
+  background: transparent;
+  outline: none;
+  color: #726659;
+  
+  border: solid 1px #b3aca7;
+  border-bottom: none;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+/*CONTACT FORM*/
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+  color: #bbb5af;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+  color: #bbb5af;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::placeholder, textarea::focus:placeholder {
+  color: #bbb5af;
+}
+
+input::-ms-placeholder, textarea::-ms-placeholder {
+  color: #aca49c;
+  font-size: 0.875em;
+}
+
+input:focus::-ms-placeholder, textarea:focus::-ms-placeholder {
+  color: #bbb5af;
+}
+
+/* on hover placeholder */
+
+input:hover::-webkit-input-placeholder, textarea:hover::-webkit-input-placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::-webkit-input-placeholder, textarea:hover:focus::-webkit-input-placeholder {
+  color: #cbc6c1;
+}
+
+input:hover::-moz-placeholder, textarea:hover::-moz-placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::-moz-placeholder, textarea:hover:focus::-moz-placeholder {
+  color: #cbc6c1;
+}
+
+input:hover::placeholder, textarea:hover::placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::placeholder, textarea:hover:focus::placeholder {
+  color: #cbc6c1;
+}
+
+input:hover::placeholder, textarea:hover::placeholder {
+  color: #e2dedb;
+  font-size: 0.875em;
+}
+
+input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder {
+  color: #cbc6c1;
+}
+
+select {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7em;
+  width: 42em;
+  height: 4.2em;
+  padding: 0px 15px 0px 15px;
+  
+  background: transparent;
+  outline: none;
+  color: #aca49c;
+  
+  border: solid 1px #b3aca7;
+  border-bottom: none;
+
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
+
+textarea {
+  background: transparent;
+  color: #726659;
+  padding-top: 15px;
+  padding-left: 15px;
+  border: solid 1px #b3aca7;
+  
+}
+
+.txtstuff {
+  outline: none;
+  resize: none; 
+  overflow: hidden;
+}
+
+.common {
+  width: 470px;
+  min-height: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  overflow: hidden;
+}
+
+.hiddendiv {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.bttnform {
+  background: #333;
+  margin-top: 2em;
+  margin-left: 40%;
+  color: white;
+  padding: 0px 15px 0px 15px;
+  border: 0;
+  font-size: 18px;
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.bttnform span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.bttnform span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.bttnform:hover span {
+  padding-right: 25px;
+}
+
+.bttnform:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.textcondition p:first-of-type {
+  padding-top: 2em;
+}
