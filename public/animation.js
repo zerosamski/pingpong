@@ -1,16 +1,5 @@
 $(document).ready(function(){
 
-$('#competition').click( function ()  { //hides or shows additional input values, depending on competition type
-	setTimeout(function(){console.log($('#competition').val());
-	if($('#competition').val() == 'roundrobin') {
-		$('#select').prop('disabled', 'disabled') && $("#select").hide() &&  $("p:first").hide();
-	} else if($('#competition').val() == 'singles'){
-		$('#select').prop('disabled', false) && $("#select").show() && $("p:first").show();
-	}  else {
-		$('#select').prop('disabled', 'disabled')
-	}}, 2000)
-});
-
 let txt = document.getElementById('message'), 
   hiddenDiv = document.createElement('div'),
   content = null;
@@ -28,11 +17,11 @@ txt.addEventListener('keyup', function () { //extends text area when enter is pr
 
 }, false);
 
-let limit = 16; 
+let limit = 32;
 let textarea = document.getElementById("message");
 let spaces = textarea.getAttribute("cols");
 
-textarea.onkeyup = function() { //limits the number of lines (16) that can be entered in textarea
+textarea.onkeyup = function() { //limits the number of lines to 32 that can be entered in textarea
   let lines = textarea.value.split("\n");
   
   for (let i = 0; i < lines.length; i++) {
@@ -58,9 +47,6 @@ textarea.onkeyup = function() { //limits the number of lines (16) that can be en
   textarea.value = lines.slice(0, limit).join("\n");
 
 };
-
-$('textarea').numberedtextarea();
-
 });
 
 
