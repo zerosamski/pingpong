@@ -84,16 +84,12 @@ app.post("/newtournament", (req, res) => {
 
 //displays rounds of the tournament
 app.get("/rounds", (req, res) => {
-    console.log("BEGINNINGEN OF CODEEEEEEEEE")
     Players.findAll({
         where: {
             haslost: false
         }
     })
     .then((players) => {
-        console.log("+++++++++++++++++++++++++++++++++++++")
-        console.log(players)
-        console.log(players.length)
         if (players.length === 1 ) {
             res.redirect("/finalresult")
         } else {
@@ -122,9 +118,6 @@ app.get("/rounds", (req, res) => {
             order: sequelize.random()
         })
     .then((result) => {
-        console.log("///////////////////////////////")
-        console.log(result)
-        console.log(result.length)
         res.render("rounds", {players: result})
         })
         .catch(error => {
@@ -144,7 +137,7 @@ app.post("/rounds", (req, res) => {
     })
     .then((players) => {
         players.forEach(function(player) {
-            if (req.body[player.name] === "Loser") {
+            if (req.body[player.name] !== "on") {
                 Players.update({
                     haslost: true
                     }, { 
