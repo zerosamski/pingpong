@@ -118,12 +118,33 @@ app.get("/rounds", (req, res) => {
     })
 }) 
 
-
-
 //random shit trick
 app.post("/rounds", (req, res) => {
-
-}) 
+    Players.findAll({
+        where: {
+            haslost: false
+        }
+    })
+    .then((players) => {
+        players.forEach(function(player) {
+            // let playername = player.name
+            console.log(req.body[player.name])
+            if (req.body[player.name] === "Loser") {
+                Players.update({
+                    haslost: true
+                    }, { 
+                        where: {
+                            name: player.name
+                        }
+                    })
+                }
+            })
+        })
+    .then(res.redirect("/rounds"))
+    .catch(error => {
+            console.log(error)
+        })
+})
 
 //displaysfinalresult
 app.get("/finalresult", (req, res) => {

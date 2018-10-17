@@ -15,59 +15,63 @@ th, td {
 <body>
 
 <% let playersarray = players %>
-
+<form action="/rounds" method="POST">
 <% if(playersarray.length%2 === 0){ %>
 <%let match = 1 %>
   <% for(var i = 0; i < playersarray.length; i=i+2) { %>
   <p> match <%= match %> </p>
-  <form>
+  
   <div class="form-group">
   <label for="exampleFormControlSelect1"><%= playersarray[i].name %></label>
-    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+    <select class="form-control" name="<%= playersarray[i].name %>" id="exampleFormControlSelect1">
       <option>Winner</option>
       <option>Loser</option>
     </select>
     <label for="exampleFormControlSelect1"><%= playersarray[i+1].name %></label>
-    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+    <select class="form-control" name="<%= playersarray[i+1].name %>" id="exampleFormControlSelect1">
       <option>Winner</option>
       <option>Loser</option>
     </select>
     </div>
-  </form>
+  
   <%match ++%>
   <% } %>
 
 <%} else if (players.length %2 !== 0) { %>
-	<% let randomplayer = playersarray[Math.floor(Math.random() * playersarray.length)] %>
-	<% var index = playersarray.indexOf(randomplayer); %>
-		<% if (index > -1) { %>
-  			<% playersarray.splice(index, 1); %>
-		<% } %>
+    <% let randomplayer = playersarray[Math.floor(Math.random() * playersarray.length)] %>
+    <% var index = playersarray.indexOf(randomplayer); %>
+        <% if (index > -1) { %>
+              <% playersarray.splice(index, 1); %>
+        <% } %>
 
   <%let match = 1 %>
 
-	<% for(var i = 0; i < playersarray.length; i=i+2) { %>
-	<p> match <%= match %> </p>
-  <form>
+    <% for(var i = 0; i < playersarray.length; i=i+2) { %>
+    <p> match <%= match %> </p>
+  
   <div class="form-group">
   <label for="exampleFormControlSelect1"><%= playersarray[i].name %></label>
-    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+    <select class="form-control" name="<%= playersarray[i].name %>" id="exampleFormControlSelect1">
       <option>Winner</option>
       <option>Loser</option>
     </select>
     <label for="exampleFormControlSelect1"><%= playersarray[i+1].name %></label>
-    <select class="form-control" name="matchresult" id="exampleFormControlSelect1">
+    <select class="form-control" name="<%= playersarray[i+1].name %>" id="exampleFormControlSelect1">
       <option>Winner</option>
       <option>Loser</option>
     </select>
     </div>
-  </form>
+  
   <%match ++%>
-	<% } %>
-	
-	<p><%=randomplayer.name%> is lucky and goes to the next round! </p>
+    <% } %>
+    
+    <p><%=randomplayer.name%> is lucky and goes to the next round! </p>
 <% } %>
 
+<br>
+
+  <button type="submit">Submit scores</button>
+</form>
 
 
 <table style="width:100%">
