@@ -59,7 +59,6 @@ app.get("/newtournament", (req, res) => {
 
 //enter names of players
 app.post("/newtournament", (req, res) => {
-    console.log(req.body.playernames)
     let playerinput = req.body.playernames
     let players = playerinput.replace(/\r\n/g, "\r").replace(/\n/g, "\r").split(/\r/)
 
@@ -85,6 +84,20 @@ app.post("/newtournament", (req, res) => {
 
 //displays rounds of the tournament
 app.get("/rounds", (req, res) => {
+    console.log("BEGINNINGEN OF CODEEEEEEEEE")
+    Players.findAll({
+        where: {
+            haslost: false
+        }
+    })
+    .then((players) => {
+        console.log("+++++++++++++++++++++++++++++++++++++")
+        console.log(players)
+        console.log(players.length)
+        if (players.length === 1 ) {
+            res.redirect("/finalresult")
+        } else {
+
     Players.findAll({
         where: {
             haslost: false
@@ -109,14 +122,18 @@ app.get("/rounds", (req, res) => {
             order: sequelize.random()
         })
     .then((result) => {
+        console.log("///////////////////////////////")
         console.log(result)
+        console.log(result.length)
         res.render("rounds", {players: result})
         })
         .catch(error => {
             console.log(error)
         })
     })
-}) 
+    }
+    }) 
+})
 
 //random shit trick
 app.post("/rounds", (req, res) => {
@@ -127,8 +144,6 @@ app.post("/rounds", (req, res) => {
     })
     .then((players) => {
         players.forEach(function(player) {
-            // let playername = player.name
-            console.log(req.body[player.name])
             if (req.body[player.name] === "Loser") {
                 Players.update({
                     haslost: true
@@ -140,7 +155,7 @@ app.post("/rounds", (req, res) => {
                 }
             })
         })
-    .then(res.redirect("/rounds"))
+    .then(()=> res.redirect("/rounds"))
     .catch(error => {
             console.log(error)
         })
@@ -148,8 +163,10 @@ app.post("/rounds", (req, res) => {
 
 //displaysfinalresult
 app.get("/finalresult", (req, res) => {
-
+    res.send("This is the winner page yo")
+    
 }) 
+
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000")

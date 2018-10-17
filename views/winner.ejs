@@ -1,0 +1,18 @@
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Round</th>
+    <th>Has lost</th>
+    <th>Winner</th>
+    <th>Runner up</th>
+  </tr>
+  <% players.forEach(function(player) { %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.lastround %></td>
+    <td><%= player.haslost %></td>
+    <td><%= player.winner %></td>
+    <td><%= player.runnerup %></td>
+  </tr>
+  <% }) %>
+</table>
