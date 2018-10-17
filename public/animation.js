@@ -17,11 +17,23 @@ txt.addEventListener('keyup', function () { //extends text area when enter is pr
 
 }, false);
 
-let limit = 32;
+let limit = null
+
+$('#competition').click( function ()  { //hides or shows additional input values, depending on competition type
+  setTimeout(function(){console.log($('#competition').val());
+  if($('#competition').val() == 'roundrobin') {
+    limit = 4
+  } else if($('#competition').val() == 'singles'){
+    limit = 32
+  }  else {
+    limit = 32
+  }}, 2000)
+});
+
 let textarea = document.getElementById("message");
 let spaces = textarea.getAttribute("cols");
 
-textarea.onkeyup = function() { //limits the number of lines to 32 that can be entered in textarea
+textarea.onkeyup = function() { //limits the number of lines to 8 that can be entered in textarea
   let lines = textarea.value.split("\n");
   
   for (let i = 0; i < lines.length; i++) {
