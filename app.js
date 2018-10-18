@@ -148,7 +148,11 @@ app.post("/rounds", (req, res) => {
                 }
             })
         })
-    .then(()=> res.redirect("/rounds"))
+        .then(()=> {
+            setTimeout(() => {
+                res.redirect("/rounds")
+                }, 400)
+            })
     .catch(error => {
             console.log(error)
         })

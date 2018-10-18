@@ -64,7 +64,7 @@ th, td {
             <p>Who won?</p>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-outline-info btn-lg  ">
-                <input type="radio" name="<%= playersarray[i].name %>" id="option1" autocomplete="off" checked><%= playersarray[i].name %>
+                <input type="radio" name="<%= playersarray[i].name %>" id="option1" autocomplete="off"><%= playersarray[i].name %>
               </label>
               <label class="btn btn-lg btn-outline-info">
                 <input type="radio" name="<%= playersarray[i+1].name %>" id="option2" autocomplete="off"><%= playersarray[i+1].name %>
@@ -77,8 +77,14 @@ th, td {
 
     <%match ++%>
   <% } %>
-  <p><%=randomplayer.name%> is lucky and goes to the next round! </p>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-sm btn-outline-info active">
+      <input type="radio" checked="" id="option2" name="<%= randomplayer.name %>"><%=randomplayer.name%> is lucky and goes to the next round! </p>
+    </label>
+  </div>
 <% } %>
+
+
   
 </div>
 </div>
