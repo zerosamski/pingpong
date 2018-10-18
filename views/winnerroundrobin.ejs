@@ -1,0 +1,16 @@
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Round</th>
+    <th>Has lost</th>
+    <th>Points</th>
+  </tr>
+  <% players.forEach(function(player) { %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.lastround %></td>
+    <td><%= player.haslost %></td>
+    <td><%= player.points %></td>
+  </tr>
+  <% }) %>
+</table>

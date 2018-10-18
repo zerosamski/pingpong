@@ -19,17 +19,17 @@ th, td {
 <%robin.forEach(function(round) { %>
     <%round.forEach(function(round1) { %>
 
-    <div class="card border-info mb-3" style="max-width: 18rem;">
+    <div class="card border-info mb-3" >
             <div class="card-header">
             </div>
             <div class="card-body text-info">
                 <p>Who won?</p>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <div class="btn-group btn-group-toggle" >
                 <label class="btn btn-outline-info btn-lg  ">
-                    <input type="radio" name="<%= round1[0] %>" id="option1" autocomplete="off"><%= round1[0] %>
+                    <input type="number" min="0" max="11" name="<%= round1[0] %>" id="option1" autocomplete="off"><%= round1[0] %>
                 </label>
                 <label class="btn btn-lg btn-outline-info">
-                    <input type="radio" name="<%= round1[1] %>" id="option2" autocomplete="off"><%= round1[1] %>
+                    <input type="number" min="0" max="11" name="<%= round1[1] %>" id="option2" autocomplete="off"><%= round1[1] %>
                 </label>
                 </div>
             </div>
@@ -40,6 +40,10 @@ th, td {
 
   <button type="submit">Submit scores</button>
   </form>
+
+
+
+
 
     
 

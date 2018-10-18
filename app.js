@@ -38,6 +38,9 @@ const Players = sequelize.define('players', {
     },
     runnerup: {
         type: Sequelize.BOOLEAN
+    },
+    points: {
+        type: Sequelize.INTEGER
     }
 });
 
@@ -69,7 +72,8 @@ app.post("/newtournament", (req, res) => {
             haslost: false,
             lastround: 0,
             winner: false,
-            runnerup: false
+            runnerup: false,
+            points: 0
         })
     })
 
@@ -185,6 +189,46 @@ app.get("/roundrobin", (req, res) => {
         console.log(result)
         res.render("roundrobin", {robin: result})
     })  
+})
+
+//roundrobinresults
+app.post("/roundrobinresults", (req, res) => {
+    console.log(req.body)
+    Players.findAll()
+    .then((players) => {
+        players.forEach(function(player) {
+            for (var i = 0; i < req.body[player.name].length; i++) {
+                console.log(req.body[player.name][i])
+                if (req.body[player.name][i] == 11) {
+                    Players.update({
+                        points: player.points + 1
+                        }, { 
+                            where: {
+                                name: player.name
+                            }
+                        })
+                }
+            }
+        })
+    })
+    .then(()=> {
+        setTimeout(() => {
+            res.redirect("/roundrobinwinner")
+            }, 400)
+        })
+    .catch(error => {
+            console.log(error)
+        })
+    })
+
+app.get('/roundrobinwinner', (req, res) => {
+    Players.findAll({
+        order: [
+            ['points', 'DESC']]
+        })
+    .then((players) => {
+        res.render("winnerroundrobin", {players:players})
+    })
 })
 
 //displaysfinalresult
