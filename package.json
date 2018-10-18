@@ -24,6 +24,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "pg": "^7.5.0",
+    "roundrobin": "^1.0.3",
     "sequelize": "^4.39.0"
   }
 }

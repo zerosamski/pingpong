@@ -1,0 +1,54 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+</style>
+</head>
+<body>
+
+<form action="/roundrobinresults" method="POST">
+<%robin.forEach(function(round) { %>
+    <%round.forEach(function(round1) { %>
+
+    <div class="card border-info mb-3" >
+            <div class="card-header">
+            </div>
+            <div class="card-body text-info">
+                <p>Who won?</p>
+                <div class="btn-group btn-group-toggle" >
+                <label class="btn btn-outline-info btn-lg  ">
+                    <input type="number" min="0" max="11" name="<%= round1[0] %>" id="option1" autocomplete="off"><%= round1[0] %>
+                </label>
+                <label class="btn btn-lg btn-outline-info">
+                    <input type="number" min="0" max="11" name="<%= round1[1] %>" id="option2" autocomplete="off"><%= round1[1] %>
+                </label>
+                </div>
+            </div>
+            </div>
+    </br>
+ <% }) %>
+  <% }) %>
+
+  <button type="submit">Submit scores</button>
+  </form>
+
+
+
+
+
+    
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
+
