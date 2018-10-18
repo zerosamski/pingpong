@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const Sequelize = require('sequelize');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+var robin  = require('roundrobin');
 
 //configuring modules
 app = express();
@@ -78,7 +79,13 @@ app.post("/newtournament", (req, res) => {
         }
     })
     .then((players) => {
-        res.redirect("/rounds")
+        if (req.body.mode === "singles") {
+            res.redirect("/rounds")
+        } else if (req.body.mode === "roundrobin") {
+            res.redirect("/roundrobin")
+        } else {
+            res.send("error")
+        }
     })
 }) 
 
@@ -137,6 +144,8 @@ app.post("/rounds", (req, res) => {
     })
     .then((players) => {
         players.forEach(function(player) {
+            console.log("/////////////////////////////////")
+            console.log(req.body[player.name])
             if (req.body[player.name] !== "on") {
                 Players.update({
                     haslost: true
@@ -156,6 +165,26 @@ app.post("/rounds", (req, res) => {
     .catch(error => {
             console.log(error)
         })
+})
+
+//roundrobin
+app.get("/roundrobin", (req, res) => {
+    let namearray = []
+    let amountplayers;
+    Players.findAll()
+    .then((players) => {
+        amountplayers = players.length
+        players.forEach(function(player) {
+            namearray.push(player.name)
+        })
+    })
+    .then(() => {
+        return robin(amountplayers, namearray)
+    })
+    .then((result) => {
+        console.log(result)
+        res.render("roundrobin", {robin: result})
+    })  
 })
 
 //displaysfinalresult
