@@ -19,15 +19,14 @@ txt.addEventListener('keyup', function () { //extends text area when enter is pr
 
 let limit = null
 
-$('#competition').click( function ()  { //hides or shows additional input values, depending on competition type
-  setTimeout(function(){console.log($('#competition').val());
+$('#competition').change( function ()  { //removed or adds additional input values, depending on competition type
   if($('#competition').val() == 'roundrobin') {
-    limit = 4;
+    limit = 5;
   } else if($('#competition').val() == 'singles'){
     limit = 32;
   }  else {
     limit = 0;
-  }}, 2000);
+  }
 });
 
 let textarea = document.getElementById("message");
