@@ -314,3 +314,45 @@ textarea {
   color:#D12941;
   margin-left: 30%;
 }
+
+/*Round Robin*/
+
+.robintitle h1 {
+  text-align: center;
+  padding-right: 1em;
+}
+
+.robintitle h6 {
+  text-align: center;
+  padding-right: 2em;
+}
+
+.roundrobin p:first-child {
+  text-align: center;
+} 
+
+.roundnames {
+  float: left;
+}
+
+.roundnames select {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7em;
+  width: 20.5em;
+  height: 4.2em;
+  padding: 0px 15px 0px 15px;
+  margin-bottom: 5em;
+
+  text-align-last: center;
+  text-align: center;
+  
+  background: transparent;
+  outline: none;
+  color: #aca49c;
+  
+  border: solid 1px #b3aca7;
+
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
