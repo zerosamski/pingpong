@@ -199,7 +199,7 @@ app.post("/roundrobinresults", (req, res) => {
         players.forEach(function(player) {
             for (var i = 0; i < req.body[player.name].length; i++) {
                 console.log(req.body[player.name][i])
-                if (req.body[player.name][i] == 11) {
+                if (req.body[player.name][i] == 'W') {
                     Players.update({
                         points: player.points + 1
                         }, { 
