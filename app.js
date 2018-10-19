@@ -2,9 +2,7 @@
 require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const Sequelize = require('sequelize');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 var robin  = require('roundrobin');
 
 //configuring modules
@@ -14,14 +12,14 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended: true}))
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-  storage: "./session.postgres",
   host: process.env.DB_HOST,
   dialect: 'postgres',
   operatorsAliases: false
 })
 
-sequelize.sync({force: true}).then(() => {
-})
+let tourname
+
+
 
 const Players = sequelize.define('players', {
     name: {
@@ -33,27 +31,21 @@ const Players = sequelize.define('players', {
     lastround: {
         type: Sequelize.INTEGER
     },
-    winner: {
-        type: Sequelize.BOOLEAN
-    },
-    runnerup: {
-        type: Sequelize.BOOLEAN
-    },
     points: {
         type: Sequelize.INTEGER
     }
 });
 
-//routes
+//ROUTES
 
 //homepages
 app.get("/", (req, res) => {
-
+  res.send("Homepage mothafuckkaaa")
 }) 
 
 //about+contact
 app.get("/aboutcontact", (req, res) => {
-
+  res.send("Awesome pics")
 }) 
 
 //create new tournament
@@ -63,16 +55,18 @@ app.get("/newtournament", (req, res) => {
 
 //enter names of players
 app.post("/newtournament", (req, res) => {
+    tourname = req.body.tourname
     let playerinput = req.body.playernames
     let players = playerinput.replace(/\r\n/g, "\r").replace(/\n/g, "\r").split(/\r/)
+
+    sequelize.sync({force: true})
+    .then(() => {
 
     players.forEach(function(player) {
         Players.create({
             name: player,
             haslost: false,
             lastround: 0,
-            winner: false,
-            runnerup: false,
             points: 0
         })
     })
@@ -84,17 +78,18 @@ app.post("/newtournament", (req, res) => {
     })
     .then((players) => {
         if (req.body.mode === "singles") {
-            res.redirect("/rounds")
+            res.redirect("/singleelimination")
         } else if (req.body.mode === "roundrobin") {
             res.redirect("/roundrobin")
         } else {
             res.send("error")
         }
     })
+})
 }) 
 
 //displays rounds of the tournament
-app.get("/rounds", (req, res) => {
+app.get("/singleelimination", (req, res) => {
     Players.findAll({
         where: {
             haslost: false
@@ -102,45 +97,45 @@ app.get("/rounds", (req, res) => {
     })
     .then((players) => {
         if (players.length === 1 ) {
-            res.redirect("/finalresult")
+            res.redirect("/bracketresult")
         } else {
 
-    Players.findAll({
-        where: {
-            haslost: false
-        }
-    })
-    .then((players) => {
-        players.forEach(function(player) {
-            Players.update({
-                lastround: player.lastround + 1
-                }, { 
-                    where: {
-                        name: player.name
-                    }
+            Players.findAll({
+                where: {
+                    haslost: false
+                }
+            })
+        .then((players) => {
+            players.forEach(function(player) {
+                Players.update({
+                    lastround: player.lastround + 1
+                    }, { 
+                        where: {
+                            name: player.name
+                        }
+                    })
                 })
             })
-        })
-    .then(() => {
-        return Players.findAll({
-            where: {
-                haslost: false
-            },
-            order: sequelize.random()
-        })
-    .then((result) => {
-        res.render("rounds", {players: result})
-        })
+        .then(() => {
+            return Players.findAll({
+                where: {
+                    haslost: false
+                },
+                order: sequelize.random()
+            })
+        .then((result) => {
+            res.render("singleelimination", {players: result, tourname: tourname})
+              })
         .catch(error => {
             console.log(error)
         })
-    })
+      })
     }
-    }) 
+  }) 
 })
 
 //random shit trick
-app.post("/rounds", (req, res) => {
+app.post("/singleelimination", (req, res) => {
     Players.findAll({
         where: {
             haslost: false
@@ -148,8 +143,6 @@ app.post("/rounds", (req, res) => {
     })
     .then((players) => {
         players.forEach(function(player) {
-            console.log("/////////////////////////////////")
-            console.log(req.body[player.name])
             if (req.body[player.name] !== "on") {
                 Players.update({
                     haslost: true
@@ -163,7 +156,7 @@ app.post("/rounds", (req, res) => {
         })
         .then(()=> {
             setTimeout(() => {
-                res.redirect("/rounds")
+                res.redirect("/singleelimination")
                 }, 400)
             })
     .catch(error => {
@@ -171,10 +164,23 @@ app.post("/rounds", (req, res) => {
         })
 })
 
+//bracket result
+app.get("/bracketresult", (req, res) => {
+    Players.findAll({
+        where: {
+                haslost: false
+            }
+    })
+    .then((players) => {
+        res.render("winner", {players: players})
+    })    
+}) 
+
 //roundrobin
 app.get("/roundrobin", (req, res) => {
     let namearray = []
     let amountplayers;
+
     Players.findAll()
     .then((players) => {
         amountplayers = players.length
@@ -186,8 +192,7 @@ app.get("/roundrobin", (req, res) => {
         return robin(amountplayers, namearray)
     })
     .then((result) => {
-        console.log(result)
-        res.render("roundrobin", {robin: result})
+        res.render("roundrobin", {robin: result, tourname: tourname})
     })  
 })
 
@@ -214,18 +219,18 @@ app.post("/roundrobinresults", (req, res) => {
                            }
                        })
                    }
-           }
-       })
-   })
-   .then(()=> {
-       setTimeout(() => {
-           res.redirect("/roundrobinwinner")
-           }, 400)
-       })
-   .catch(error => {
-           console.log(error)
-       })
-   })
+              }
+          })
+      })
+     .then(()=> {
+         setTimeout(() => {
+             res.redirect("/roundrobinwinner")
+             }, 400)
+         })
+     .catch(error => {
+             console.log(error)
+         })
+    })
 
 
 app.get('/roundrobinwinner', (req, res) => {
@@ -237,18 +242,6 @@ app.get('/roundrobinwinner', (req, res) => {
         res.render("winnerroundrobin", {players: players})
     })
 })
-
-//displaysfinalresult
-app.get("/finalresult", (req, res) => {
-    Players.findAll({
-        where: {
-                haslost: false
-            }
-    })
-    .then((players) => {
-        res.render("winner", {players: players})
-    })    
-}) 
 
 
 app.listen(3000, () => {
