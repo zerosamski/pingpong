@@ -1,54 +1,77 @@
+<!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;    
-}
-</style>
-</head>
-<body>
+    <head>
+        <title> Tournament </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #262933;">
+      <div class="container">
+        <a class="navbar-brand" style="color: #cee0d6" href="#">
+          <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Ping Pong
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-<form action="/roundrobinresults" method="POST">
-<%robin.forEach(function(round) { %>
-    <%round.forEach(function(round1) { %>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
 
-    <div class="card border-info mb-3" >
-            <div class="card-header">
-            </div>
-            <div class="card-body text-info">
-                <p>Who won?</p>
-                <div class="btn-group btn-group-toggle" >
-                <label class="btn btn-outline-info btn-lg  ">
-                    <input type="number" min="0" max="11" name="<%= round1[0] %>" id="option1" autocomplete="off"><%= round1[0] %>
-                </label>
-                <label class="btn btn-lg btn-outline-info">
-                    <input type="number" min="0" max="11" name="<%= round1[1] %>" id="option2" autocomplete="off"><%= round1[1] %>
-                </label>
-                </div>
-            </div>
-            </div>
-    </br>
- <% }) %>
-  <% }) %>
+          </ul>
+          <ul class="navbar-nav nav-item" class="nav-toggle">
+              <li class="nav-item">
+                <a class="nav-link" style="color: #cee0d6" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color: #cee0d6" href="#">Tournament</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color: #cee0d6" href="#">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color: #cee0d6" href="#">Contact us</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
 
-  <button type="submit">Submit scores</button>
-  </form>
+    <header>
+      <div class="robintitle"><h1>Round Robin</h1></div>    
+    </header>
 
-
-
-
-
-    
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+<form id="form" class="roundrobin" action="/roundrobinresults" method="POST">
+    <%let i = 1%>
+    <%robin.forEach(function(round) { %>
+    <%round.forEach(function(round1){ %>
+        <div class="robintitle"><h6>Round <%= i %></h6></div>
+        <div class="roundnames">
+            <p><%= round1[0] %></p>
+            <select name="<%= round1[0] %>" id="option1" autocomplete="off">
+                <option disabled selected value="">Match result</option>
+                <option value="W">W</option>
+                <option value="L">L</option>
+            </select>
+        </div>
+        <div class="roundnames">
+            <p><%= round1[1] %></p>
+            <select name="<%= round1[1] %>" id="option2" autocomplete="off">
+                <option disabled selected value="">Match result</option>
+                <option value="W" >W</option>
+                <option value="L" >L</option>
+            </select>
+        </div>
+        <% i++ %>
+    <% }) %>
+    <% }) %>
+        <button class="bttnform"><span>Submit</span></button>
+</form>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../animation.js"></script>
+  </body>
 </html>
+
 
