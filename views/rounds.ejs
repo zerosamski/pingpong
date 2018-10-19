@@ -4,29 +4,64 @@
   <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #262933;">
+    <div class="container">
+      <a class="navbar-brand" style="color: #cee0d6" href="#">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Ping Pong
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+        <ul class="navbar-nav nav-item">
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">Tournament</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #cee0d6" href="#">Contact us</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+
   <% let playersarray = players %>
 
-   <h2 align="center" class="mt-2"><=%Tournament Name=></h2>
-   <div class="pb-2 pt-2" style="background-color:orange;">
-   <div class="container mt-5" align="center">
+   <h2 align="center" class="tourtit"><=%Tournament Name=></h2>
+   <div class="pb-2 pt-2" style="background-color:rgb(221,222,131,0.2)">
+   <div class="container mt-5">
    <form action="/rounds" method="POST">
      <div class="pl-5 ml-5">
-       <div class="row equal">
+       <div class="row equal pl-3">
          <% if(playersarray.length%2 === 0){ %>
-           <%let match = 1 %>
+          <%let match = 1 %>
             <% for(var i = 0; i < playersarray.length; i=i+2) { %>
               <div class="col-sm-4 d-flex pb-3">
-                <div class="card border-info mb-3" style=" width: 13rem;">
-                  <div class="card-header">  match <%= match %>  </div>
+                <div class="card border-black mb-3" style=" width: 13rem;">
+                  <div align="center" class="card-header">  Match <%= match %>  </div>
                   <div class="card-body text-info">
-                    <p>Who won?</p>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                      <label class="btn btn-outline-info btn-lg">
-                        <input type="radio" name="<%= playersarray[i].name %>" id="option1" autocomplete="off"><%= playersarray[i].name %>
-                      </label>
-                      <label class="btn btn-lg btn-outline-info">
-                        <input type="radio" name="<%= playersarray[i+1].name %>" id="option2" autocomplete="off"><%= playersarray[i+1].name %>
-                      </label>
+                    <p align="center">Who won?</p>
+                    <div class="form-check">
+                       <input class="form-check-input ma" type="checkbox" name="<%= playersarray[i].name %>" id="gridCheck1">
+                       <label class="form-check-label mar" for="gridCheck1">
+                         <%= playersarray[i].name %>
+                       </label>
+                       <input class="form-check-input marg" type="checkbox" name="<%= playersarray[i+1].name %>" id="gridCheck1">
+                       <label class="form-check-label margi" for="gridCheck1">
+                         <%= playersarray[i+1].name %>
+                       </label>
                     </div>
                   </div>
                 </div>
@@ -48,37 +83,33 @@
             <% for(var i = 0; i < playersarray.length; i=i+2) { %>
           <div class="col-sm-4 d-flex pb-3">
             <div class="card border-info mb-3" style=" width: 13rem;">
-              <div class="card-header">match <%= match %></div>
+              <div class="card-header">Match <%= match %></div>
               <div class="card-body text-info">
-                <p>Who won?</p>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-outline-info btn-lg">
-                    <input type="radio" name="<%= playersarray[i].name %>" id="option1" autocomplete="off"><%= playersarray[i].name %>
-                  </label>
-                  <label class="btn btn-lg btn-outline-info">
-                    <input type="radio" name="<%= playersarray[i+1].name %>" id="option2" autocomplete="off"><%= playersarray[i+1].name %>
-                  </label>
+                <p align="center">Who won?</p>
+                <div class="form-check">
+                   <input class="form-check-input ma" type="checkbox" name="<%= playersarray[i].name %>" id="gridCheck1">
+                   <label class="form-check-label mar" for="gridCheck1">
+                     <%= playersarray[i].name %>
+                   </label>
+                   <input class="form-check-input marg" type="checkbox" name="<%= playersarray[i+1].name %>" id="gridCheck1">
+                   <label class="form-check-label  margi" for="gridCheck1">
+                     <%= playersarray[i+1].name %>
+                   </label>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
           <%match ++%>
         <% } %>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-sm btn-outline-info active">
-            <input type="radio" checked="" id="option2" name="<%= randomplayer.name %>"><%=randomplayer.name%> is lucky and goes to the next round! </p>
-          </label>
-        </div>
       </div>
+      <p class="lucky"><%=randomplayer.name%> is lucky and goes to the next round! </p>
       <% } %>
 
 
     </div>
-    <button class="btn btn-info btn-lg" type="submit">Submit scores</button>
+    <div>
+    <button class="btn btn-info btn-lg pushbtn" type="submit">Submit scores</button>
+  </div>
   </form>
 </div>
 </div>
