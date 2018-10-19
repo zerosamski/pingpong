@@ -193,33 +193,40 @@ app.get("/roundrobin", (req, res) => {
 
 //roundrobinresults
 app.post("/roundrobinresults", (req, res) => {
-    console.log(req.body)
-    Players.findAll()
-    .then((players) => {
-        players.forEach(function(player) {
-            for (var i = 0; i < req.body[player.name].length; i++) {
-                console.log(req.body[player.name][i])
-                if (req.body[player.name][i] == 'W') {
-                    Players.update({
-                        points: player.points + 1
-                        }, { 
-                            where: {
-                                name: player.name
-                            }
-                        })
-                }
-            }
-        })
-    })
-    .then(()=> {
-        setTimeout(() => {
-            res.redirect("/roundrobinwinner")
-            }, 400)
-        })
-    .catch(error => {
-            console.log(error)
-        })
-    })
+   console.log(req.body)
+   Players.findAll()
+   .then((players) => {
+       players.forEach(function(player) {
+           let wins = 0
+           for (var i = 0; i < req.body[player.name].length; i++) {
+               if (req.body[player.name][i] == "W") {
+                   wins += 1
+                   //console logs to slow program down
+                   console.log("++++++++++++++++++++++++")
+                   console.log(req.body[player.name])
+                   console.log(wins)
+                   console.log("found an eleven!")
+                   Players.update({
+                       points: wins
+                       }, {
+                           where: {
+                               name: player.name
+                           }
+                       })
+                   }
+           }
+       })
+   })
+   .then(()=> {
+       setTimeout(() => {
+           res.redirect("/roundrobinwinner")
+           }, 400)
+       })
+   .catch(error => {
+           console.log(error)
+       })
+   })
+
 
 app.get('/roundrobinwinner', (req, res) => {
     Players.findAll({
@@ -227,14 +234,20 @@ app.get('/roundrobinwinner', (req, res) => {
             ['points', 'DESC']]
         })
     .then((players) => {
-        res.render("winnerroundrobin", {players:players})
+        res.render("winnerroundrobin", {players: players})
     })
 })
 
 //displaysfinalresult
 app.get("/finalresult", (req, res) => {
-    res.send("This is the winner page yo")
-    
+    Players.findAll({
+        where: {
+                haslost: false
+            }
+    })
+    .then((players) => {
+        res.render("winner", {players: players})
+    })    
 }) 
 
 
