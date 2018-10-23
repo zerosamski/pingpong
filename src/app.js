@@ -7,8 +7,9 @@ var robin  = require('roundrobin');
 
 //configuring modules
 app = express();
+app.set("views", "../views")
 app.set("view engine", "ejs")
-app.use(express.static("public"))
+app.use(express.static("../public"))
 app.use(bodyParser.urlencoded({extended: true}))
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
@@ -40,17 +41,17 @@ const Players = sequelize.define('players', {
 
 //homepages
 app.get("/", (req, res) => {
-  res.render("home")
+  res.send("home")
 }) 
 
 //about
 app.get("/aboutus", (req, res) => {
-  res.render("aboutus")
+  res.send("aboutus")
 })
 
 //contact
 app.get("/contactus", (req, res) => {
-  res.render("contactus")
+  res.send("contactus")
 })  
 
 //create new tournament
