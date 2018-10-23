@@ -319,8 +319,15 @@ textarea {
   padding-left: 33%;
 }
 
+.marglucky{
+  margin-top: 1.9em;
+  margin-left: 22.5%;
+  position: absolute;
+}
+
 .lucky{
   color:#D12941;
+  margin-top: 2.5em;
   margin-left: 30%;
 }
 
