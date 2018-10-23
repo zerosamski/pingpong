@@ -19,6 +19,15 @@ a:hover{
   transition: opacity 250ms ease-in-out 250ms;
 }
 
+.card-heading {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  color: #cee0d6;
+  background-color: #262933;
+  text-align: center;
+}
+
+}
 @media screen and (min-width: 800px) {
 
   nav li {
