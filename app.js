@@ -172,7 +172,7 @@ app.get("/bracketresult", (req, res) => {
             }
     })
     .then((players) => {
-        res.render("winner", {players: players})
+        res.render("winnersingle", {players: players})
     })    
 }) 
 
