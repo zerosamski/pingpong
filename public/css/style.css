@@ -54,12 +54,16 @@ a:hover{
   /* background: no-repeat; */
   background-position: fixed;
   background-size: cover;
-  height: 80%;
+  height: 47.5em;
   margin-bottom: 8%;
 }
 
-.textcolor{
+.textcolor1{
   color: #CEE0D6;
+}
+
+.textcolor2{
+  color: #212529;
 }
 
 .jumbobutton {
@@ -320,7 +324,7 @@ textarea {
 
 .marglucky{
   margin-top: 1.9em;
-  margin-left: 20.5%;
+  margin-left: 16.8%;
   position: absolute;
 }
 
