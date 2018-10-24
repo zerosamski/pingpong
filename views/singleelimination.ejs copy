@@ -44,7 +44,7 @@
   </header>
    <div class="container mt-5">
    <form action="/singleelimination" method="POST">
-     <div class="pl-5 ml-5 toni">
+     <div class="pl-5 ml-5">
        <div class="row equal pl-3">
          <% if(playersarray.length%2 === 0){ %>
           <%let match = 1 %>

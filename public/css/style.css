@@ -51,7 +51,6 @@ a:hover{
 
 .jumbotron {
   background-image: url("../img/pingpong.jpeg");
-  /* background: no-repeat; */
   background-position: fixed;
   background-size: cover;
   height: 48.75em;
@@ -67,10 +66,6 @@ a:hover{
 }
 
 .jumbobutton {
-    position: absolute;
-    top: 86%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     padding: 2%;
     color: #CEE0D6;
     font-size: 16pt;
@@ -332,6 +327,29 @@ textarea {
   color:#D12941;
   margin-top: 2.5em;
   margin-left: 30%;
+}
+
+@media (max-width: 576px){
+.ma{ 
+  margin-left: -117%; 
+}
+.mar{
+  margin-left:13%;
+}
+.marglucky{ 
+  margin-left: -55%;
+}
+.marg{
+  margin-left: -95%;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(0.2); /* IE */
+  -moz-transform: scale(0.2); /* FF */
+  -webkit-transform: scale(0.3); /* Safari and Chrome */
+  -o-transform: scale(0.2); /* Opera */
+}
 }
 
 /*Round Robin*/
