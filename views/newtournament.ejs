@@ -43,13 +43,13 @@
       <h2>Game on!</h2>
     </header>
     <form id="form" action="/newtournament" method="POST" >
-      <input id="name" name="tourname" type="text" placeholder="Tournament Name" required>
+      <input id="name" name="tourname" type="text" placeholder="Tournament Name" autocomplete="off" required>
       <select name="mode" id="competition" required>
         <option disabled selected value="">Select Competition type</option>
         <option value="roundrobin" id="roundrobin">Round Robin</option>
         <option value="singles" id="singles">Single Elimination</option>
       </select>
-      <textarea id="message" type="text" placeholder="Player names*" name="playernames" class="common" cols="36"required></textarea>
+      <textarea id="message" type="text" placeholder="Player names*" name="playernames" class="common" cols="36" autocomplete="off" required></textarea>
         <button class="bttnform"><span>Submit</span></button>
       <div class="textcondition">
         <p>*Press enter after every name</p>
